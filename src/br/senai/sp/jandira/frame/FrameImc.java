@@ -11,9 +11,13 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.SizeAction;
+
+import com.sun.net.httpserver.Authenticator.Result;
+
 import br.senai.sp.jandira.contaimc.*;
 
 public class FrameImc {
+	
 	
 	
 	public void criairFrame() {
@@ -57,14 +61,14 @@ public class FrameImc {
 		frameimc.getContentPane().add(frameButton);
 		
 		JLabel lblresultImc = new JLabel();
-		lblresultImc.setBounds(20, 250, 120, 30);
+		lblresultImc.setBounds(20, 250, 1000, 30);
 		lblresultImc.setText("");
 		frameimc.getContentPane().add(lblresultImc);
 		
-		JLabel lblestadopesoimc = new JLabel();
-		lblestadopesoimc.setBounds(20, 280, 1000, 30);
-		lblestadopesoimc.setText("");
-		frameimc.getContentPane().add(lblestadopesoimc);
+		JLabel lblmostradorpesoimc = new JLabel();
+		lblmostradorpesoimc.setBounds(20, 280, 1000, 30);
+		lblmostradorpesoimc.setText("");
+		frameimc.getContentPane().add(lblmostradorpesoimc);
 		
 		
 		
@@ -73,27 +77,13 @@ public class FrameImc {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-		         String peso =  fldimcpeso.getText();
-		  
-		         lblresultImc.setText(peso);
-		         
-		         String altura = fldimcaltura.getText();
-		         double alutraresult = Double.parseDouble(altura);
-		         
-		         
-		         double valorpeso = Integer.parseInt(peso);
-		         double reultado =  valorpeso * alutraresult/2 ; 
-		         lblresultImc.setText(String.valueOf("valor do IMC : " +reultado));
-		         
-		         
-		         //mostradorimc
-		         
-		         MostradorImc mostradorimc =  new MostradorImc();
-		         
-		         String mostrador = lblestadopesoimc.getText();
-		         mostradorimc.getClass();
-		         lblestadopesoimc.setText("Seus estado IMC : " +mostradorimc);
-		         
+		   
+				  CalculoImc  imc = new CalculoImc();
+				imc.setpeso(fldimcpeso.getText());
+				imc.setaltura(fldimcaltura.getText());
+				
+				lblresultImc.setText(imc.obterimcString());
+		         lblmostradorpesoimc.setText(imc.mostradorimc());
 				
 			}
 		});
